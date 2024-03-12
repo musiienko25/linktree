@@ -1,25 +1,31 @@
-import Image from "next/image";
-import Link from "next/link";
+import Header from "./components/Header";
 
 export default function Home() {
   return (
     <main>
-      <header className="bg-gray-200 border-b flex justify-between p-4">
-        <div className="flex gap-4">
-          <Link href={"/"}>LinkList</Link>
-          <nav className="flex gap-2 text-gray-500">
-            <Link href={"/about"}>About</Link>
-            <Link href={"/pricitng"}>Pricing</Link>
-            <Link href={"/contact"}>Contact</Link>
-          </nav>
+      <Header />
+
+      <section className="p-6 pt-32 max-w-4xl mx-auto">
+        <div className="max-w-md mb-8">
+          <h1 className="text-6xl font-bold">
+            Your one link
+            <br /> for everything
+          </h1>
+          <h2 className="text-gray-500 text-xl mt-6">
+            Share your links, social profiles, contact info and more on one page
+          </h2>
         </div>
-        <div>
-          <Link href={"/login"}>Sign in</Link>
-          <Link href={"/register"}>Create account</Link>
-        </div>
-      </header>
-      test
-      <section></section>
+        <form
+          action=""
+          className="inline-flex flex items-center shadow-lg shadow-gray-500/20"
+        >
+          <span className="bg-white py-4 pl-4">LinkList.to/</span>
+          <input type="text" className="py-4" placeholder="username" />
+          <button type="submit" className="bg-blue-500 text-white p-4 px-6">
+            Join for free
+          </button>
+        </form>
+      </section>
     </main>
   );
 }
