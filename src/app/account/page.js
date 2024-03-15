@@ -2,10 +2,12 @@
 
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
-import RightIcon from "../components/icons/RightIcon";
-import grabUsername from "@/actions/grabUsername";
 
-const AccountPage = async () => {
+import grabUsername from "@/actions/grabUsername";
+import { redirect } from "next/navigation";
+import UsernameForm from "../components/forms/UsernameForm";
+
+const AccountPage = async ({ searchParams, ...rest }) => {
   const session = await getServerSession(authOptions);
   const desiredUsername = searchParams?.desiredUsername;
 
@@ -17,29 +19,11 @@ const AccountPage = async () => {
     <div>
       account: {session?.user?.name} <br />
       desired username: {desiredUsername}
-      <form>
-        <h1 className="text-4xl font-bold text-center mb-2">
-          Grab yours username
-        </h1>
-        <p className="text-center mb-6 text-gray-500">Choose your username</p>
-        <div className="max-w-xs mx-auto">
-          {" "}
-          <input
-            // name={username}
-            className="block p-2 px mx-auto border w-full mb-2"
-            defaultValue={desiredUsername}
-            type="text"
-            placeholder="username"
-          />
-          <button
-            className="bg-blue-500 text-white py-2 px-4 block mx-auto w-full flex gap-2 items-center justify-center"
-            type="submit"
-          >
-            <span>Claim username</span>
-            <RightIcon />
-          </button>
-        </div>
-      </form>
+      <UsernameForm
+        grabUsername={grabUsername}
+        name={session?.user?.name}
+        desiredUsername={desiredUsername}
+      />
     </div>
   );
 };
