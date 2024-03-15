@@ -1,7 +1,11 @@
+"use server";
+
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
+import RightIcon from "../components/icons/RightIcon";
+import grabUsername from "@/actions/grabUsername";
 
-const AccountPage = async ({ searchParams }) => {
+const AccountPage = async () => {
   const session = await getServerSession(authOptions);
   const desiredUsername = searchParams?.desiredUsername;
 
@@ -21,16 +25,18 @@ const AccountPage = async ({ searchParams }) => {
         <div className="max-w-xs mx-auto">
           {" "}
           <input
+            // name={username}
             className="block p-2 px mx-auto border w-full mb-2"
             defaultValue={desiredUsername}
             type="text"
             placeholder="username"
           />
           <button
-            className="bg-blue-500 text-white py-2 px-4 block mx-auto w-full"
+            className="bg-blue-500 text-white py-2 px-4 block mx-auto w-full flex gap-2 items-center justify-center"
             type="submit"
           >
-            Claim username
+            <span>Claim username</span>
+            <RightIcon />
           </button>
         </div>
       </form>
