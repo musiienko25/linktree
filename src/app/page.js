@@ -1,4 +1,3 @@
-import Header from "./components/Header";
 import HeroForm from "./components/forms/HeroForm";
 
 export default function Home() {
