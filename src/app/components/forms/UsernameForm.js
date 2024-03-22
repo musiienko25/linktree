@@ -3,20 +3,21 @@
 import { useState } from "react";
 import RightIcon from "../icons/RightIcon";
 import { useFormState } from "react-dom";
+import { redirect } from "next/navigation";
 
 export default function UsernameForm({ grabUsername, name, desiredUsername }) {
-  const [state] = useFormState(grabUsername);
   const [taken, setTaken] = useState(false);
+
   async function handleSubmit(formData) {
     const result = await grabUsername(formData);
-
+    console.log(result);
     setTaken(result === false);
     if (result) {
       redirect("/account?created=" + formData.get("username"));
     }
   }
   return (
-    <form onSubmit={handleSubmit}>
+    <form action={handleSubmit}>
       <h1 className="text-4xl font-bold text-center mb-2">
         Grab yours username
       </h1>
@@ -24,7 +25,7 @@ export default function UsernameForm({ grabUsername, name, desiredUsername }) {
       <div className="max-w-xs mx-auto">
         {" "}
         <input
-          name={name}
+          name="username"
           className="block p-2 px mx-auto border w-full mb-2"
           defaultValue={desiredUsername}
           type="text"

@@ -1,12 +1,12 @@
 "use server";
 
 import { Page } from "@/models/Page";
-
-const grabUsername = async (formdata) => {
-  console.log({ formdata });
+import mongoose from "mongoose";
+const grabUsername = async (formData) => {
   const username = formData.get("username");
-  Mongoose.connect(process.env.MONGO_URL);
-  const pageDoc = await Page.create({ uri: username });
+
+  mongoose.connect(process.env.MONGO_URL);
+  const pageDoc = await Page.create({ username });
   return JSON.parse(JSON.stringify(pageDoc));
 };
 
