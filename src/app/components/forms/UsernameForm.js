@@ -1,12 +1,22 @@
 "use client";
 
+import { useState } from "react";
 import RightIcon from "../icons/RightIcon";
 import { useFormState } from "react-dom";
 
 export default function UsernameForm({ grabUsername, name, desiredUsername }) {
   const [state] = useFormState(grabUsername);
+  const [taken, setTaken] = useState(false);
+  async function handleSubmit(formData) {
+    const result = await grabUsername(formData);
+
+    setTaken(result === false);
+    if (result) {
+      redirect("/account?created=" + formData.get("username"));
+    }
+  }
   return (
-    <form onSubmit={grabUsername}>
+    <form onSubmit={handleSubmit}>
       <h1 className="text-4xl font-bold text-center mb-2">
         Grab yours username
       </h1>
@@ -20,6 +30,7 @@ export default function UsernameForm({ grabUsername, name, desiredUsername }) {
           type="text"
           placeholder="username"
         />
+        {taken && <UserNameFormResult />}
         <button
           className="bg-blue-500 text-white py-2 px-4 block mx-auto w-full flex gap-2 items-center justify-center"
           type="submit"
