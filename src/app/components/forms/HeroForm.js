@@ -1,10 +1,11 @@
 "use client";
 
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { redirect, useRouter } from "next/navigation";
 
-const HeroForm = () => {
+const HeroForm = ({ user }) => {
+  const router = useRouter();
   const [username, setUsername] = useState("fdfd");
   useEffect(() => {
     if (
@@ -24,8 +25,13 @@ const HeroForm = () => {
     const username = input.value;
     if (username.length > 0) {
       // signIn("google", { redirect: "/account?username=" + username });
-      window.localStorage.setItem("desiredUsername", username);
-      await signIn("google");
+
+      if (user) {
+        router.push('/account?desiredUsername="' + username);
+      } else {
+        window.localStorage.setItem("desiredUsername", username);
+        await signIn("google");
+      }
     }
   };
   return (

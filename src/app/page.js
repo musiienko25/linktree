@@ -1,6 +1,10 @@
+import { SessionProvider } from "next-auth/react";
 import HeroForm from "./components/forms/HeroForm";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]/route";
 
 export default function Home() {
+  const session = getServerSession(authOptions);
   return (
     <main>
       <section className=" pt-32">
@@ -13,7 +17,8 @@ export default function Home() {
             Share your links, social profiles, contact info and more on one page
           </h2>
         </div>
-        <HeroForm />
+        {/* <SessionProvider> */} <HeroForm user={session?.user} />
+        {/* </SessionProvider> */}
       </section>
     </main>
   );
