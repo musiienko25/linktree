@@ -1,17 +1,21 @@
 "use client";
 
 import { useState } from "react";
-import RightIcon from "../icons/RightIcon";
+
 import { useFormState } from "react-dom";
 import { redirect } from "next/navigation";
+import SubmitButton from "../buttons/SubmitButton";
 
 export default function UsernameForm({ grabUsername, name, desiredUsername }) {
   const [taken, setTaken] = useState(false);
-
+  const [isLoading, setIsloading] = useState(false);
   async function handleSubmit(formData) {
+    setIsloading(true);
     const result = await grabUsername(formData);
-    console.log(result);
+    // setIsloading(false);
+
     setTaken(result === false);
+
     if (result) {
       redirect("/account?created=" + formData.get("username"));
     }
@@ -32,13 +36,8 @@ export default function UsernameForm({ grabUsername, name, desiredUsername }) {
           placeholder="username"
         />
         {taken && <UserNameFormResult />}
-        <button
-          className="bg-blue-500 text-white py-2 px-4 block mx-auto w-full flex gap-2 items-center justify-center"
-          type="submit"
-        >
-          <span>Claim username</span>
-          <RightIcon />
-        </button>
+        {isLoading ? "loading..." : "not loading"}
+        <SubmitButton>Claim</SubmitButton>
       </div>
     </form>
   );
