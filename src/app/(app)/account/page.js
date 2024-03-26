@@ -1,12 +1,13 @@
 "use server";
 
 import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
+
 import mongoose from "mongoose";
 import grabUsername from "@/actions/grabUsername";
 import { redirect } from "next/navigation";
-import UsernameForm from "../components/forms/UsernameForm";
+import UsernameForm from "../../components/forms/UsernameForm";
 import { Page } from "@/models/Page";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 const AccountPage = async ({ searchParams, ...rest }) => {
   const session = await getServerSession(authOptions);

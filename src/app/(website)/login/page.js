@@ -1,6 +1,6 @@
 "use client";
 
-import LoginWithGoogle from "../components/buttons/LoginWithGoogle";
+import LoginWithGoogle from "../../components/buttons/LoginWithGoogle";
 
 const LoginPage = () => {
   return (
