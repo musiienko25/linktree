@@ -2,12 +2,12 @@
 
 import { signOut } from "next-auth/react";
 
-const LogoutButton = () => {
+const LogoutButton = ({
+  className = "flex items-center gap-2 border p-2 px-4 shadow",
+  iconLeft = false,
+}) => {
   return (
-    <button
-      className="flex items-center gap-2 border p-2 px-4 shadow"
-      onClick={() => signOut()}
-    >
+    <button className={className} onClick={() => signOut()}>
       LogoutButton
     </button>
   );
