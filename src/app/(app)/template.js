@@ -29,7 +29,7 @@ export default async function AppTemplate({ children, ...res }) {
         <main className="flex min-h-screen">
           <AppSidebar session={session} />
           {/* <Header /> */}
-          <div className="" iconLeft={true}>
+          <div className="w-[70%]" iconLeft={true}>
             <div className="bg-white m-8 p-4 shadow w-full">{children}</div>
           </div>
         </main>

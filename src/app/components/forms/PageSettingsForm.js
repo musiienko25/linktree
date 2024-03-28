@@ -9,19 +9,20 @@ const PageSettingsForm = async ({ page }) => {
   return (
     <div className="-m-4">
       <form>
-        <div className="bg-gray-300 h-32 flex justify-center items-center"></div>
-        <div>avatar</div>
-        <RadioTogglers
-          selected="color"
-          options={[
-            { value: "color", icon: "faPalette", label: "Color" },
-            { value: "image", icon: "faPalette", label: "Image" },
-          ]}
-          onChange={() => {}}
-        />
+        <div className="bg-gray-300 h-32 flex justify-center items-center">
+          <RadioTogglers
+            selected="color"
+            options={[
+              { value: "color", icon: "faPalette", label: "Color" },
+              { value: "image", icon: "faPalette", label: "Image" },
+            ]}
+            onChange={() => {}}
+          />
+        </div>
       </form>
-      <div>
+      <div className="flex justify-center">
         <Image
+          className="rounded-full relative -top-8"
           src={session?.user?.image}
           alt={"avatar"}
           width={128}
