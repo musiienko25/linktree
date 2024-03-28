@@ -1,7 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind apply;
 
 body {
   @apply bg-gray-100;
+}
+
+.radio-togglers {
+  @apply p-1 inline-flex border border-blue-500;
+}
+
+.radio-togglers div{
+  @apply p-2 px-4 shadow bg-white text-gray-700 block flex items-center gap-2;
+}
+
+.radio-togglers input[type="radio"] {
+  @apply hidden;
+}
+
+.radio-togglers input[type="radio"]:checked + div {
+  @apply bg-white bg-blue-500 text-blue-600;
 }
