@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "../globals.css";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
+import { Toaster } from "react-hot-toast";
 
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
@@ -26,6 +27,7 @@ export default async function AppTemplate({ children, ...res }) {
   return (
     <html lang="en">
       <body className={inter.className}>
+        <Toaster />
         <main className="flex min-h-screen">
           <AppSidebar session={session} />
           {/* <Header /> */}

@@ -23,14 +23,14 @@ const AccountPage = async ({ searchParams, ...rest }) => {
 
   if (page) {
     // return <div>your page is: /{page.uri}</div>;
-    return <PageSettingsForm page={page} />;
+    return <PageSettingsForm page={page} user={session.user} />;
   }
 
   return (
     <div>
       {/* account: {session?.user?.name} <br />
       desired username: {desiredUsername} */}
-      <PageSettingsForm page={page} />
+      <PageSettingsForm page={page} user={session.user} />
       {/* <UsernameForm
         grabUsername={grabUsername}
         name={session?.user?.name}
