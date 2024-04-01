@@ -12,7 +12,7 @@ const SubmitButton = ({ children, className = "" }) => {
         className
       }
       type="submit"
-      // disabled={pending}
+      disabled={pending}
     >
       <span>{children}</span>
       <RightIcon />

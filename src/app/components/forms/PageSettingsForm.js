@@ -23,6 +23,7 @@ const PageSettingsForm = async ({ page, user }) => {
       <form action={saveBaseSettings}>
         <div className="bg-gray-300 h-32 flex justify-center items-center">
           <RadioTogglers
+            // defaultValue={page.bgType}
             selected="color"
             options={[
               { value: "color", icon: "faPalette", label: "Color" },
@@ -30,6 +31,10 @@ const PageSettingsForm = async ({ page, user }) => {
             ]}
             onChange={() => {}}
           />
+        </div>
+
+        <div>
+          <input type="color" />
         </div>
 
         <div className="flex justify-center -mb-12">
@@ -70,7 +75,7 @@ const PageSettingsForm = async ({ page, user }) => {
           ></textarea>
           <div className="max-w-[200px] mx-auto">
             {" "}
-            <SubmitButton className="max-w-sm"> Save1</SubmitButton>
+            <SubmitButton className="max-w-sm"> Save</SubmitButton>
           </div>
         </div>
       </form>
