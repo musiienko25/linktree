@@ -1,21 +1,15 @@
 "use client";
 
 import { useState } from "react";
-
-import { useFormState } from "react-dom";
-import { redirect } from "next/navigation";
+import grabUsername from "@/actions/grabUsername";
 import SubmitButton from "../buttons/SubmitButton";
 
-export default function UsernameForm({ grabUsername, name, desiredUsername }) {
+export default function UsernameForm({ desiredUsername }) {
   const [taken, setTaken] = useState(false);
-  const [isLoading, setIsloading] = useState(false);
   async function handleSubmit(formData) {
-    setIsloading(true);
     const result = await grabUsername(formData);
-    // setIsloading(false);
 
     setTaken(result === false);
-
     if (result) {
       redirect("/account?created=" + formData.get("username"));
     }
@@ -36,7 +30,7 @@ export default function UsernameForm({ grabUsername, name, desiredUsername }) {
           placeholder="username"
         />
         {taken && <UserNameFormResult />}
-        {isLoading ? "loading..." : "not loading"}
+        {taken ? "loading..." : "not loading"}
         <SubmitButton>Claim</SubmitButton>
       </div>
     </form>

@@ -19,6 +19,8 @@ const AccountPage = async ({ searchParams, ...rest }) => {
   mongoose.connect(process.env.MONGO_URL);
   const page = await Page.findOne({ owner: session?.user?.email });
 
+  console.log(searchParams);
+
   if (page) {
     return <div>your page is: /{page.uri}</div>;
   }
