@@ -1,8 +1,6 @@
-import React from "react";
-import RightIcon from "../icons/RightIcon";
 import { useFormStatus } from "react-dom";
 
-const SubmitButton = ({ children, className = "" }) => {
+export default function SubmitButton({ children, className = "" }) {
   const { pending } = useFormStatus();
 
   return (
@@ -14,10 +12,8 @@ const SubmitButton = ({ children, className = "" }) => {
       type="submit"
       disabled={pending}
     >
-      <span>{children}</span>
-      <RightIcon />
+      {pending && <span>Saving...</span>}
+      {!pending && children}
     </button>
   );
-};
-
-export default SubmitButton;
+}

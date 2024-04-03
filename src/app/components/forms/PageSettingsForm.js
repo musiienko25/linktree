@@ -23,7 +23,7 @@ const PageSettingsForm = async ({ page, user }) => {
       <form action={saveBaseSettings}>
         <div className="bg-gray-300 h-32 flex justify-center items-center">
           <RadioTogglers
-            // defaultValue={page.bgType}
+            defaultValue={page.bgType}
             selected="color"
             options={[
               { value: "color", icon: "faPalette", label: "Color" },

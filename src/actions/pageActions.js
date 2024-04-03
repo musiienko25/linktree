@@ -13,9 +13,10 @@ const savePageSettings = async (formData) => {
     const displayName = formData.get("displayName");
     const location = formData.get("location");
     const bio = formData.get("bio");
+    const bgType = formData.get("bgType");
     Page.updateOne(
       { owner: session?.user?.email },
-      { displayName, location, bio }
+      { displayName, location, bio, bgType }
     );
   }
   return true;

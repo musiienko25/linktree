@@ -2,12 +2,12 @@ import { model, models, Schema } from "mongoose";
 
 const PageSchema = new Schema(
   {
-    username: { type: String, required: true, min: 1, unique: true },
+    username: { type: String, required: true, min: 1, unique: true }, // змінено username на uri
     owner: { type: String, required: true },
     displayName: { type: String, default: "" },
     location: { type: String, default: "" },
     bio: { type: String, default: "" },
-    // bgType: { type: String, default: "color" },
+    bgType: { type: String, default: "color" },
   },
   { timestamps: true }
 );
